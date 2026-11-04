@@ -10,9 +10,13 @@ app.post("/png", async (req, res) => {
   const html = req.body.html;
 
   const browser = await puppeteer.launch({
-    headless: true,
-    args: ["--no-sandbox"]
-  });
+  headless: "new",
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage"
+  ]
+});
 
   const page = await browser.newPage();
 
